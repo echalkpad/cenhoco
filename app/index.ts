@@ -10,6 +10,7 @@ module CenHoCo {
         export function initialize() {
             document.addEventListener('deviceready', onDeviceReady, false);
             console.log('Application initializing...');
+            console.log(document.location.href);
         }
 
         function onDeviceReady() {

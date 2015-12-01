@@ -10,7 +10,7 @@
   "author": "Kluger.net GmbH",
   "license": "Apache v2",
   "devDependencies": {
-    "angular2": "^2.0.0-alpha.44",
+    "angular2": "^2.0.0-alpha.45",
     "bootstrap": "^3.3.5",
     "del": "^2.0.2",
     "gulp": "^3.9.0",

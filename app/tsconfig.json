@@ -4,7 +4,8 @@
         "noEmitOnError": true,
         "removeComments": false,
         "sourceMap": true,
-        "module": "system",
+      "module": "system",
+      "emitDecoratorMetadata": true,
       "target": "es5",
       "experimentalDecorators":  true
     }

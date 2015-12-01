@@ -6,10 +6,13 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "es6-shim/es6-shim.d.ts": {
-      "commit": "cf7f980ba6cf09f75aaa9b5e53010db3c00b9aaf"
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    },
+    "angular2/router.d.ts": {
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
     },
     "angular2/angular2.d.ts": {
-      "commit": "cf7f980ba6cf09f75aaa9b5e53010db3c00b9aaf"
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
     }
   }
 }

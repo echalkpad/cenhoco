@@ -1,0 +1,23 @@
+﻿
+    <div><label>Please enter the local Url</label></div>
+
+    <div><input (blur)="onLocalUrlBlur($event)" [(ng-model)]="config.localUrl"></div>
+    
+    <div><label>Please enter the remote Url</label></div>
+
+    <div><input [(ng-model)]="config.remoteUrl"></div>
+    
+    <div><label>Please choose the sitemap</label></div>
+
+    <div>
+        <select [(ng-model)]="config.siteMap"> 
+            <option *ng-for="#siteMap of siteMapList"  value="{{ siteMap.Name }}">
+                 {{ siteMap.Label }}
+            </option>
+        </select>
+    </div>
+
+<div>
+<button (click)="onSaveClick($event)">Save</button>
+<button (click)="onCancelClick($event)">Cancel</button>
+</div>

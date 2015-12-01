@@ -25,7 +25,8 @@ var config = {
             ['node_modules/bootstrap/dist/fonts/*', 'www/vendor/5_bootstrap/fonts'],
             ['node_modules/traceur/bin/traceur-runtime.js', 'www/vendor/1_traceur'],
             ['node_modules/systemjs/dist/system.js', 'www/vendor/2_systemjs'],            
-            ['node_modules/angular2/bundles/angular2.dev.js', 'www/vendor/3_angular2']
+            ['node_modules/angular2/bundles/angular2.dev.js', 'www/vendor/3_angular2'],
+            ['node_modules/angular2/bundles/router.dev.js', 'www/vendor/3_angular2']
         ]
     },
     typescript: {
@@ -77,11 +78,11 @@ gulp.task('vendorComponents', ['ressources', 'typescript'], function () {
 gulp.task('inject', ['typescript', 'vendorComponents'], function() {
     var vendorCss = gulp.src([config.paths.vendorOutput + '/**/*.css'], { read: false });
     var appCss = gulp.src([config.paths.outputPath + '/' + config.paths.stylesSubPath + '/' + config.paths.stylesFilename], { read: false });
-    var vendorStream = gulp.src([config.paths.outputPath + '/vendor/**/*.js'], { read: false });
+    //var vendorStream = gulp.src([config.paths.outputPath + '/vendor/**/*.js'], { read: false });
     var appStream = gulp.src([config.paths.scriptsOutput + '/t**/*.js'], { read: false });
 
     return gulp.src(config.paths.app + '/index.html')
-      .pipe(inject(series(vendorCss, appCss, vendorStream, appStream), {
+      .pipe(inject(series(vendorCss, appCss, appStream), {
           ignorePath: 'www',
           addRootSlash: false
       }))

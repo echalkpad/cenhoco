@@ -10,20 +10,49 @@
     -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
     <title>CenHoCo</title>
-
+    <base href=".">
     <!-- inject:css -->
     <!-- endinject -->
 </head>
 <body>
+
     <main></main>
 
     <!-- Cordova-Verweis, wird Ihrer App beim Erstellen hinzugefügt. -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
+    <script src="vendor/1_traceur/traceur-runtime.js"></script>
+    <script src="vendor/2_systemjs/system.js"></script>
+    <script src="vendor/3_angular2/angular2.dev.js"></script>
+    <script src="vendor/3_angular2/router.dev.js"></script>
+    <script src="vendor/4_jquery/jquery.js"></script>
+    <script src="vendor/5_bootstrap/js/bootstrap.js"></script>
     <!-- inject:js -->
 <!-- endinject -->
 <!--<script>System.import('./scripts/index.js');</script>-->
     <script src="scripts/index.js"></script>
-    <script>System.import('./scripts/modules/main.js');</script>
+    <script>baseElement = document.querySelector('base');baseElement.attr = baseElement.getAttribute;</script>
+    <script>
+        //System.baseURL = '/home';
+        //Console.log(location.href);
+        System.config({
+            map: {
+                //'angular2/angular2': 'angular2.dev.js',
+                //'angular2/router': 'router.dev.js'
+                'navigation/navigation': 'scripts/modules/navigation/navigation.js',
+                'content/home/home': 'scripts/modules/content/home/home.js',
+                'content/configuration/configuration': 'scripts/modules/content/configuration/configuration.js',
+                'footer/footer': 'scripts/modules/footer/footer.js',
+                'content/item/item': 'scripts/modules/content/item/item.js',
+                'content/services/itemService': 'scripts/modules/content/services/itemService.js',
+                'content/services/localStorageService': 'scripts/modules/content/services/localStorageService.js',
+                'content/configuration/cenHoCoConfig': 'scripts/modules/content/configuration/cenHoCoConfig.js',
+                'content/home/SiteMap': 'scripts/modules/content/home/SiteMap.js',
+                'services/siteMapService': 'scripts/modules/content/services/siteMapService.js',
+                'openhabAdapter/OpenhabAdapterService': 'scripts/modules/openhabAdapter/OpenhabAdapterService.js',
+                'DataContainer': 'scripts/modules/DataContainer.js'
+            }
+        })
+        System.import('./scripts/modules/main.js');</script>
 </body>
 </html>

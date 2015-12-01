@@ -1,0 +1,21 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angular2/router-2.0.0-alpha.39.d.ts": {
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    },
+    "es6-shim/es6-shim.d.ts": {
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    },
+    "angular2/angular2-2.0.0-alpha.39.d.ts": {
+      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "fc341765ebbb04b7109981a25dced01f488f4d94"
+    }
+  }
+}
