@@ -1,4 +1,4 @@
-﻿import {Component, View, bootstrap, FORM_DIRECTIVES, NgFor} from 'angular2/angular2';
+﻿import {Component, View, bootstrap, FORM_DIRECTIVES, NgFor} from 'angular2/angular2';  // , ChangeDetectionStrategy
 import {RouterOutlet, RouteConfig, RouterLink, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {localStorageService} from 'content/services/localStorageService';
 import {cenHoCoConfig} from 'content/configuration/cenHoCoConfig';
@@ -8,6 +8,7 @@ import {SiteMap} from 'content/home/SiteMap';
 
 @Component({
     selector: 'configuration'
+    //changeDetection: ChangeDetectionStrategy.OnPush
 })
 @View({
     directives: [FORM_DIRECTIVES, NgFor],
@@ -27,12 +28,19 @@ export class configuration {
         this.siteMapService = new siteMapService();
         this.router = router;
         var siteMap = new SiteMap();
-        console.log('default sitemap being build');
-        siteMap.Label = 'Please enter the local Url first';
-        siteMap.Url = '';
-        siteMap.Name = 'defaultsitemap';
-        this.siteMapList = [siteMap]; 
-        console.log('default sitemap name: ' + siteMap.Name);
+
+        if (this.config.localUrl == '') {  //TODO: behavior for wrong Url - probably needed in siteMapService
+            console.log('default sitemap being build');
+            siteMap.Label = 'Please enter a valid local Url first';
+            siteMap.Url = '';
+            siteMap.Name = 'defaultsitemap';
+            this.siteMapList = [siteMap];
+            console.log('default sitemap name: ' + siteMap.Name);
+        }
+        else {
+            console.log('constructor getSiteMaps call for present localUrl');
+            this.siteMapService.getSiteMaps(this.config.localUrl, (siteMapList) => { this.setSiteMapList(siteMapList) }, this.getSiteMapListError);
+        }
     }
 
     public onCancelClick(event) {
@@ -47,7 +55,7 @@ export class configuration {
 
     public onLocalUrlBlur(event) {
         console.log('Blur call');
-        this.siteMapService.getSiteMaps(this.config.localUrl, this.setSiteMapList, this.getSiteMapListError);
+        this.siteMapService.getSiteMaps(this.config.localUrl, (siteMapList) => { this.setSiteMapList(siteMapList) }, this.getSiteMapListError);
     }
 
     public setSiteMapList(siteMapData) {

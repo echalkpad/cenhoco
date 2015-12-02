@@ -28,7 +28,7 @@ export class localStorageService {
     }
 
     public saveToStorage(config: cenHoCoConfig) {    // TODO: Does not save values properly, instead saves empty strings
-        console.log('local url before stringify: ' + config.localUrl);
+       console.log('local url before stringify: ' + config.localUrl);
        localStorage.setItem('storedConfig', JSON.stringify(config));
        console.log('saved values to local storage: ' + JSON.stringify(config));
    }

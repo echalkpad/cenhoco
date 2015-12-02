@@ -2,13 +2,16 @@
 
 import {SiteMap} from 'content/home/SiteMap';
 import {OpenhabAdapterService} from 'openhabAdapter/OpenhabAdapterService';
+//import {DataContainer} from 'DataContainer';
 
 export class siteMapService {
 
     public OpenhabAdapter: OpenhabAdapterService;
-
+    //public config;
+      
     constructor() {
         this.OpenhabAdapter = new OpenhabAdapterService();
+        //this.config = DataContainer.Config;
     }
 
     public getSiteMaps(url: string, successCallBack, errorCallBack) {
@@ -30,6 +33,7 @@ export class siteMapService {
         var siteMapList: SiteMap[];
         if (!data || (!data.sitemap && !data.sitemaps)) {
             errorCallBack(jqXHR, 'parserError', 'Sitemap data was empty');
+            //this.config.siteMap = 'No sitemap data found';
             return;
         }
 
@@ -46,6 +50,7 @@ export class siteMapService {
 
         if (!data.sitemaps.length || (data.sitemaps.length < 1)) {
             errorCallBack(jqXHR, 'parserError', 'Sitemap collection was empty');
+            //this.config.siteMap = 'No sitemaps found';
             return;
         }
 
