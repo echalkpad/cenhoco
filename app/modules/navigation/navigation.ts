@@ -28,7 +28,7 @@ export class navigation {
     {
         if (this.isHome == true) {
             this.router.navigateByUrl('/Configuration');
-            this.buttonText = 'Back';
+            this.buttonText = '< Back'; // maybe make a sort of arrow here, like "< Back"
             this.isHome = false;
         }
         else {

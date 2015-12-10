@@ -1,14 +1,14 @@
-﻿import {Component, View, bootstrap, FORM_DIRECTIVES, NgFor} from 'angular2/angular2';  // , ChangeDetectionStrategy
+﻿import {Component, View, bootstrap, FORM_DIRECTIVES, NgFor} from 'angular2/angular2'; 
 import {RouterOutlet, RouteConfig, RouterLink, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {localStorageService} from 'content/services/localStorageService';
 import {cenHoCoConfig} from 'content/configuration/cenHoCoConfig';
 import {DataContainer} from 'DataContainer';
 import {siteMapService} from 'services/siteMapService';
 import {SiteMap} from 'content/home/SiteMap';
+import {GlobalMessages} from 'footer/GlobalMessages/GlobalMessages';
 
 @Component({
     selector: 'configuration'
-    //changeDetection: ChangeDetectionStrategy.OnPush
 })
 @View({
     directives: [FORM_DIRECTIVES, NgFor],
@@ -21,6 +21,7 @@ export class configuration {
     private siteMapService: siteMapService;
     public siteMapList: Array<SiteMap>;
     private router;
+    public GlobMess: GlobalMessages;
 
     constructor(router: Router) {
         this.storageService = new localStorageService();
@@ -28,8 +29,9 @@ export class configuration {
         this.siteMapService = new siteMapService();
         this.router = router;
         var siteMap = new SiteMap();
+        this.GlobMess = new GlobalMessages();
 
-        if (this.config.localUrl == '') {  //TODO: behavior for wrong Url - probably needed in siteMapService
+        if (this.config.localUrl == '') {  //TODO: behavior for wrong Url - probably needed in siteMapService - errorCallBacks getSiteMapListError
             console.log('default sitemap being build');
             siteMap.Label = 'Please enter a valid local Url first';
             siteMap.Url = '';
@@ -66,6 +68,9 @@ export class configuration {
 
     public getSiteMapListError(data) {
         console.log('getSiteMapError ' + data);
+        // TODO check which error is thrown, then call GlobalMessages fuctions
+        // this.GlobMess.setText('No sitemap data was found');
+        // this.GlobMess.setText('No sitemaps were found under this Url');
     }
 
 }

@@ -29,6 +29,7 @@ export class mainApp {
         var storageService: localStorageService;
         storageService = new localStorageService();
         DataContainer.Config = storageService.loadFromStorage();
+        //DataContainer.GlobalMessage.Message = ''; // GlobalMessage default  TODO: Get this to be accepted
         console.log('main.ts loads loadfromstorage');
         if (DataContainer.Config && DataContainer.Config.isConfigured) {
             router.navigateByUrl('/Home');

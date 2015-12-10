@@ -2,16 +2,13 @@
 
 import {SiteMap} from 'content/home/SiteMap';
 import {OpenhabAdapterService} from 'openhabAdapter/OpenhabAdapterService';
-//import {DataContainer} from 'DataContainer';
 
 export class siteMapService {
 
     public OpenhabAdapter: OpenhabAdapterService;
-    //public config;
       
     constructor() {
         this.OpenhabAdapter = new OpenhabAdapterService();
-        //this.config = DataContainer.Config;
     }
 
     public getSiteMaps(url: string, successCallBack, errorCallBack) {
@@ -21,7 +18,6 @@ export class siteMapService {
             //url: 'http://localhost:8080/rest/sitemaps',
             url: url,
             headers: { 'Accept': 'application/json' },
-            //accepts: 'application/json',
             success: function (data, textStatus, jqXHR) {
                 self.extractSiteMaps(data, textStatus, jqXHR, successCallBack, errorCallBack)
             },
@@ -33,7 +29,6 @@ export class siteMapService {
         var siteMapList: SiteMap[];
         if (!data || (!data.sitemap && !data.sitemaps)) {
             errorCallBack(jqXHR, 'parserError', 'Sitemap data was empty');
-            //this.config.siteMap = 'No sitemap data found';
             return;
         }
 
@@ -50,7 +45,6 @@ export class siteMapService {
 
         if (!data.sitemaps.length || (data.sitemaps.length < 1)) {
             errorCallBack(jqXHR, 'parserError', 'Sitemap collection was empty');
-            //this.config.siteMap = 'No sitemaps found';
             return;
         }
 
@@ -69,19 +63,5 @@ export class siteMapService {
         return;
     }
 
-    //public getState() {
-    //var request = $.ajax
-    //    ({
-    //        type: "GET",
-    //        url: "http://localhost:8080/rest/sitemaps"
-    //    });
-
-    //request.done(function (data) {
-    //    console.log("Success: Status=" + data);
-    //});
-
-    //request.fail(function (jqXHR, textStatus) {
-    //    console.log("Failure: " + textStatus);
-    //});
 }
 
