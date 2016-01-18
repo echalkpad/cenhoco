@@ -10,9 +10,27 @@ import {itemService} from 'content/services/itemService';
 })
 export class item {
 
-    public Id;
-    //will require an itemService Service to work, which also needs to be imported
-    //item: itemService;
+    public type;
+    public state;
+    public name;
+    public link;
+
+    constructor(data) {
+        if (data) {
+            if (data.type) {
+                this.type = data.type;
+            }
+            if (data.state) {
+                this.state = data.state;
+            }
+            if (data.name) {
+                this.name = data.name;
+            }
+            if (data.link) {
+                this.link = data.link;
+            }
+        }
+    }
 
 }
 
