@@ -1,15 +1,8 @@
 ﻿/// <reference path="../../../typings/jquery/jquery.d.ts" /> 
 
 import {SiteMap} from 'content/home/SiteMap';
-import {OpenhabAdapterService} from 'openhabAdapter/OpenhabAdapterService';
 
 export class siteMapService {
-
-    public OpenhabAdapter: OpenhabAdapterService;
-      
-    constructor() {
-        this.OpenhabAdapter = new OpenhabAdapterService();
-    }
 
     public getSiteMaps(url: string, successCallBack, errorCallBack) {
         console.log('getSiteMaps url value: ' + url);
@@ -36,7 +29,11 @@ export class siteMapService {
             var siteMap = new SiteMap();
             siteMap.Label = data.sitemap.label;
             siteMap.Name = data.sitemap.name;
-            siteMap.Url = data.sitemap.link;
+            if (!data.sitemap.homepage || !data.sitemap.homepage.link) {
+                errorCallBack(jqXHR, 'parserError', 'homepage data was empty');
+                return;
+            }
+            siteMap.Url = data.sitemap.homepage.link;
             siteMapList = [siteMap];
             console.log('single sitemap with label: ' + siteMap.Label);
             successCallBack(siteMapList);
