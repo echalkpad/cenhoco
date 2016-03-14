@@ -3,7 +3,7 @@ import {RouterOutlet, RouteConfig, RouterLink, ROUTER_PROVIDERS, ROUTER_DIRECTIV
 import {localStorageService} from 'content/services/localStorageService';
 import {cenHoCoConfig} from 'content/configuration/cenHoCoConfig';
 import {DataContainer} from 'DataContainer';
-import {siteMapService} from 'services/siteMapService';
+import {siteMapService} from 'content/services/siteMapService';
 import {SiteMap} from 'content/home/SiteMap';
 import {GlobalMessages} from 'footer/GlobalMessages/GlobalMessages';
 
@@ -24,6 +24,7 @@ export class configuration {
     public GlobMess: GlobalMessages;
 
     constructor(router: Router) {
+        console.log('configuration constructor called');
         this.storageService = new localStorageService();
         this.config = DataContainer.Config;
         this.siteMapService = new siteMapService();
@@ -37,7 +38,7 @@ export class configuration {
             siteMap.Url = '';
             siteMap.Name = 'defaultsitemap';
             this.siteMapList = [siteMap];
-            console.log('default sitemap name: ' + siteMap.Name);
+            //console.log('default sitemap name: ' + siteMap.Name);
         }
         else {
             console.log('constructor getSiteMaps call for present localUrl');
@@ -50,9 +51,20 @@ export class configuration {
     }
 
     public onSaveClick(event) {
+        console.log('onSaveClick called with event ' + event + ' and this.config ' + this.config);
         this.storageService.saveToStorage(this.config);
-        DataContainer.Config = this.config; //TODO: verify values + reload server connection
-        this.router.navigateByUrl('/Home');
+        console.log('DataContainer Config: ' + DataContainer.Config);
+        DataContainer.Config = this.config; //TODO: verify values + reload server connection   
+        //for (var siteMap in this.siteMapList) 
+        for (var i = 0; i < this.siteMapList.length; i += 1) {
+            console.log('for loop ' + this.siteMapList[i].Name + ' and config.sitemap ' + this.config.sitemap);
+            // if (this.siteMapList[i].Name == this.config.sitemap) {    TODO: once select ng-for bug is fixed, use this again
+            if (this.siteMapList[i].Name == 'demo') {
+                console.log('onSaveClick if runs ' + this.siteMapList[i].Name);
+                this.getSiteMapSuccess(this.siteMapList[i]);
+                break;
+            }
+        }
     }
 
     public onLocalUrlBlur(event) {
@@ -63,15 +75,22 @@ export class configuration {
     public setSiteMapList(siteMapData) {
         console.log('setSiteMap ' + siteMapData);
         this.siteMapList = siteMapData;
-        console.log('new sitemaplist first label: ' + this.siteMapList[0].Label);
+        //console.log('new sitemaplist first label: ' + this.siteMapList[0].Label);
     }
 
     public getSiteMapListError(data) {
-        console.log('getSiteMapError ' + data);
+        //console.log('getSiteMapError ' + data);
         // TODO check which error is thrown, then call GlobalMessages fuctions
         // this.GlobMess.setText('No sitemap data was found');
         // this.GlobMess.setText('No sitemaps were found under this Url');
     }
+
+    public getSiteMapSuccess(siteMap: SiteMap) {
+        console.log('getSiteMapSuccess in configuration called');
+        DataContainer.SiteMap = siteMap;
+        DataContainer.ActivePageUrl = siteMap.Url;
+        this.router.navigateByUrl('/Home');
+    } 
 
 }
 

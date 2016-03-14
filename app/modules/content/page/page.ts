@@ -6,7 +6,7 @@ import {widget} from 'content/widget/widget';
 })
 @View({
     directives: [],
-    templateUrl: './scripts/modules/content/page/page.html'
+    //templateUrl: './scripts/modules/content/page/page.html'
 })
 export class page {
 
@@ -34,6 +34,14 @@ export class page {
             if (data.leaf) {
                 this.leaf = data.leaf;
             }
+        }
+        else {
+            this.id = 'Loading';
+            this.title = 'Loading';
+            this.icon = 'Loading';
+            this.link = 'Loading';
+            this.leaf = false;
+            this.widgetList = [];
         }
     }
 

@@ -5,6 +5,30 @@
     height: 15%;
 }
 
+.widget-listing {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.widget-list {
+    list-style-type: none;
+}
+
+.home-icon {
+    margin-left: 3%;
+    width: 35%;
+}
+
+.home-title {
+    font-size: 16px;
+    margin-left: 2%;
+    width: 60%;
+}
+
+.widget-container {
+    margin-top: 3%;
+}
+
 .navbar {
     height: 80px;
 }

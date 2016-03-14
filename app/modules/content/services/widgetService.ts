@@ -21,22 +21,18 @@ import {WebviewWidget} from 'content/widget/widgetTypes/WebviewWidget';
 })
 export class widgetService {
 
-    public widgetList: widget[];
+    //public widgetList: widget[];
 
     constructor() {
     }
 
     // TODO: set successCallBack and errorCallBack functionality
-    //public callGetItems() {
-    //    this.getItems(DataContainer.Config.localUrl + '/' + DataContainer.Config.sitemap, successCallBack, errorCallBack);
-    //}
-
-    // define top level List for items and widgets globally, otherwise the function would create a new seperate List every time. 
-    // New List inside function should be sub-level to the global List. How to connect them?
 
     public extractWidgets(data: any): widget[] {
 
-        var widgetList: widget[]; // needed with the global widgetList?
+        var widgetList: Array<widget>;
+        widgetList = new Array<widget>();
+        var addWidget: widget;
 
         if (!data || (!data.widget && !data.widgets)) {
             //errorCallBack(jqXHR, 'parserError', 'Widget data was empty');
@@ -44,69 +40,85 @@ export class widgetService {
             return null;
         }
 
-        // still fitting?
-        if (!data.widgets.length || (data.widgets.length < 1)) {
-            //errorCallBack(jqXHR, 'parserError', 'Widget Collection was empty');
-            console.log('Widget Collection was empty');
+        if (!data.widget.length) {
+            console.log('single widget getting Typed with data.widget.type: ' + data.widget.type + 'and data.widget ' + data.widget);
+            widgetList = [this.getTypedWidget(data.widget)];
+            return widgetList;
+        }
+
+        if (data.widget.length < 1) {
+            console.log('data.widget was empty');
             return null;
         }
 
-        if (data.widget) {
-           this.widgetList = [this.getTypedWidget(data.widget)];
+        if (data.widget.length == 1) {
+            console.log('single widget getting Typed with data.widget[0].type: ' + data.widget[0].type + 'and data.widget ' + data.widget);
+            widgetList = [this.getTypedWidget(data.widget[0])];
+            return widgetList;
         }
-        else {
-            for (var widgetElement in data.widgets) {
-                this.widgetList.push(this.getTypedWidget(widgetElement));
+         
+            console.log('several widgets getting Typed');
+            //for (var widgetElement in data.widget) {
+            for (var i = 0; i < data.widget.length; i += 1) {
+                console.log('several widgets getting Typed - for loop with i: ' + i);
+                console.log('several widgets getting Typed - for loop with data.widget[i]: ' + data.widget[i]);
+                console.log('several widgets getting Typed - for loop with data.widget[i].label: ' + data.widget[i].label);
+                addWidget = this.getTypedWidget(data.widget[i]);
+                console.log('pre widgetList.push inside several widget Typing loop with widgetList: ' + widgetList);
+                widgetList.push(addWidget);
+                console.log('post widgetList.push inside several widget Typing loop');
             }
-        }
-
-        return widgetList;
+        
+        console.log('getWidgets returned list: ' + widgetList + ' and type of first element: ' + widgetList[0].type + ' and widgetList.length: ' + widgetList.length);
+        return widgetList; 
     }
 
-    public getTypedWidget(widget: any) {
+    public getTypedWidget(widgetForType: any) {
 
         var returnWidget: widget;
-        
-        // switch case with "new" calls for each widget Type
-        switch (widget.type) {
+        console.log('getTypedWidget called with widget of type: ' + widgetForType.type);
+        switch (widgetForType.type) {
             case "Chart":
-                returnWidget = new ChartWidget(widget);
+                returnWidget = new ChartWidget(widgetForType);
                 break;
             case "Colorpicker":
-                returnWidget = new ColorpickerWidget(widget);
+                returnWidget = new ColorpickerWidget(widgetForType);
                 break;
             case "Frame":
-                returnWidget = new FrameWidget(widget);
+                returnWidget = new FrameWidget(widgetForType);
                 break;
             case "Group":
-                returnWidget = new GroupWidget(widget);
+                returnWidget = new GroupWidget(widgetForType);
+                console.log('GroupWidget created with widgetForType ' + widgetForType + ' and widgetForType.type: ' + widgetForType.type);
+                console.log('GroupWidget created inside getTypedWidget with returnWidget: ' + returnWidget + ' with returnWidget.type: ' + returnWidget.type);
                 break;
             case "Image":
-                returnWidget = new ImageWidget(widget);
+                returnWidget = new ImageWidget(widgetForType);
                 break;
             case "List":
-                returnWidget = new ListWidget(widget);
+                returnWidget = new ListWidget(widgetForType);
                 break;
             case "Selection":
-                returnWidget = new SelectionWidget(widget);
+                returnWidget = new SelectionWidget(widgetForType);
                 break;
             case "Setpoin":
-                returnWidget = new SetpointWidget(widget);
+                returnWidget = new SetpointWidget(widgetForType);
                 break;
             case "Switch":
-                returnWidget = new SwitchWidget(widget);
+                returnWidget = new SwitchWidget(widgetForType);
                 break;
             case "Text":
-                returnWidget = new TextWidget(widget);
+                returnWidget = new TextWidget(widgetForType);
                 break;
             case "Video":
-                returnWidget = new VideoWidget(widget);
+                returnWidget = new VideoWidget(widgetForType);
                 break;
             case "Webview":
-                returnWidget = new WebviewWidget(widget);
+                returnWidget = new WebviewWidget(widgetForType);
                 break;
         }
 
+        console.log('getTypedWidget return value: ' + returnWidget);
         return returnWidget;
 
     }

@@ -1,7 +1,16 @@
 ﻿
-<div>home/main content page place holder</div>
 
-<li *ng-for="#item of itemList">
-            {{ item.Id }}
-   
-</li>
+<div class="home-icon"> {{Page.icon}} </div>
+<div class="home-title"><h3> {{Page.title}} </h3></div>
+
+
+<div class="widget-container">
+    <ul>
+        <!--<li *ng-for="#widget of widgetList">
+            <widgetcontainer [widgettyper]="widget"></widgetcontainer>
+        </li>-->
+        <widgetcontainer *ng-for="#widget of widgetList" [widgettyper]="widget"></widgetcontainer>
+    </ul>
+
+</div>
+

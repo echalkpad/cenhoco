@@ -5,7 +5,7 @@ import {SiteMap} from 'content/home/SiteMap';
 export class siteMapService {
 
     public getSiteMaps(url: string, successCallBack, errorCallBack) {
-        console.log('getSiteMaps url value: ' + url);
+        console.log('siteMapService getSiteMaps url value: ' + url);
         var self = this;
         $.ajax({
             //url: 'http://localhost:8080/rest/sitemaps',
@@ -53,11 +53,38 @@ export class siteMapService {
             siteMap.Name = openHabSiteMap.name;
             siteMap.Url = openHabSiteMap.link; 
             siteMapList.push(siteMap);
-            console.log('sitemap pushed onto List with label: ' + siteMap.Label);
+            //console.log('sitemap pushed onto List with label: ' + siteMap.Label);
         }
         console.log('sitemap list formed with length: ' + siteMapList.length);
         successCallBack(siteMapList);
         return;
+    }
+
+    public getSiteMap(name: string, url: string, successCallBack, errorCallBack) {
+        var self = this;
+        $.ajax({
+            url: url,
+            headers: { 'Accept': 'application/json' },
+            success: function (data, textStatus, jqXHR) {
+                var siteMap = self.setSingleSiteMap(data);
+                successCallBack(siteMap);
+            },
+            error: errorCallBack
+        });
+        return;
+    }
+
+    public setSingleSiteMap(data: any): SiteMap {
+        var siteMap = new SiteMap();
+        siteMap.Label = data.sitemap.label;
+        siteMap.Name = data.sitemap.name;
+        if (!data.sitemap.homepage || !data.sitemap.homepage.link) {
+            //errorCallBack(jqXHR, 'parserError', 'homepage data was empty');
+            return;
+        }
+        siteMap.Url = data.sitemap.homepage.link;
+        //console.log('single sitemap with label: ' + siteMap.Label);        
+        return siteMap;
     }
 
 }
