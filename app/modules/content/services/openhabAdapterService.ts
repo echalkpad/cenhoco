@@ -13,7 +13,7 @@ export class openhabAdapterService {
     }
 
     public getPage(url: string, successCallBack, errorCallBack) {
-        console.log('getPage url value: ' + url);
+        //console.log('getPage url value: ' + url);
         var self = this;
         $.ajax({
             //url: 'http://localhost:8080/rest/sitemaps',
@@ -29,8 +29,8 @@ export class openhabAdapterService {
 
     public extractPage(data: any, textStatus: string, jqXHR, successCallBack, errorCallBack) {
         var tempPage: page;
-        var helpList: Array<widget>;
-        helpList = new Array<widget>();
+        //var helpList: Array<widget>;
+        //helpList = new Array<widget>();
 
         if (!data || (!data.id && !data.title)) {
             errorCallBack(jqXHR, 'parserError', 'page data was empty');
@@ -63,21 +63,31 @@ export class openhabAdapterService {
         }
         else {
             var tempList: Array<widget>;
-            //console.log('extractPage - many widgets');
-            console.log('extractPage - many with widget widget[0] type: ' + data.widget[0].type);
-            for (var i = 0; i < data.widget.length; i += 1) {
-                tempList = this.widgetService.extractWidgets(data.widget[i]);
-                console.log('openhabService listfilling first for loop with i ' + data.widget[i]); // widgetElement is 0 on first run
-                for (var i = 0; i < tempList.length; i += 1) { 
-                    console.log('pre tempList push onto helpList');
-                    //tempPage.widgetList.push(tempList[i]);
-                    helpList.push(tempList[i]);
-                    console.log('openhabService listfilling second for loop with tempList[' + i + '] ' + tempList[i]);
+            console.log('extractPage - many widgets');
+            //console.log('!!!!!!!!!!! extractPage - many with widget[0] type: ' + data.widget[0].type + ' and data.widget ' + data.widget); //data.widget[x].type=Frame
+            console.log('extract page many widgets with data.widget.length: ' + data.widget.length + ' and data.length: ' + data.length);
+            tempList = this.widgetService.extractWidgets(data);
+
+            // TODO: this for-loop has to be integrated better with aboves else-path to work through recursion
+            for (var i = 0; i < tempList.length; i += 1) {
+                if (!tempList[i].linkedPage) {
+                    tempList[i].widgetSubList = this.widgetService.extractWidgets(data.widget[i]);
+                    console.log('tempList[' + i + '] extractWidgets result: ' + tempList[i].widgetSubList);
+                    console.log('tempList[' + i + '].widgetSubList[0].type: ' + tempList[i].widgetSubList[0].type + ' !!!!!!!');
                 }
             }
-            console.log('helpList after for-loops: ' + helpList);
-            tempPage.widgetList = helpList;
-            console.log('tempPage.widgetList after setting it to helpList: ' + tempPage.widgetList);
+
+            //for (var i = 0; i < data.widget.length; i += 1) { 
+            //    tempList = this.widgetService.extractWidgets(data.widget[i]); //gets the Group widgets under Frame
+            //    for (var i = 0; i < tempList.length; i += 1) {  // changing i to j here for some reason makes it go to even deeper levels  
+            //        helpList.push(tempList[i]);  
+            //    }
+            //}
+            //console.log('helpList after for-loops: ' + helpList);
+            //tempPage.widgetList = helpList;
+
+            tempPage.widgetList = tempList;
+            console.log('tempPage.widgetList after setting it to tempList: ' + tempPage.widgetList);
         }
         console.log('openhabAdapterService extractedPage widgetList: ' + tempPage.widgetList + ' with tempPage.widgetList.length: ' + tempPage.widgetList.length);
         successCallBack(tempPage);

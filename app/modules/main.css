@@ -10,6 +10,12 @@
     font-size: 16px;
 }
 
+.widget-sub-listing {
+    margin-top: 5px;
+    margin-left: 5%;
+    font-size: 16px;
+}
+
 .widget-list {
     list-style-type: none;
 }

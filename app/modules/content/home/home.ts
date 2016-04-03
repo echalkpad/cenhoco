@@ -30,6 +30,7 @@ export class home {
         //console.log('page.title: ' + this.Page.title);   
         //var openhabAdapterServiceHome: openhabAdapterService;
         //openhabAdapterServiceHome = new openhabAdapterService();
+        console.log('ACTIVEPAGEURL: ' + DataContainer.ActivePageUrl + ' ------------------------------------');
         openhabAdapterServiceHome.getPage(DataContainer.ActivePageUrl, (page) => { this.setPage(page) }, "error"); // TODO: set propper errorCallBack
         // TODO: Call openhabAdpterService getPage on current URL
         // how to read out current URL? need to connect this to navigation? or rather to the stack?

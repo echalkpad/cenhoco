@@ -1,9 +1,35 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <div>Content goes here.</div>
-</body>
-</html>
+﻿<div class="widget-listing">Type: {{ widgetlocal.type }}</div>
+<div class="widget-listing">Id: {{ widgetlocal.widgetId }}</div>
+<!--{{widgetlocal.widgetSubList.length}}-->
+
+
+<div *ng-if="widgetlocal.widgetSubList">
+BLAAA
+    {{widgetlocal.widgetSubList.length}}
+    <!--<div class="widget-sub-listing" *ng-for="#widget of widgetlocal.widgetSubList">
+        {{ widget.widgetId }}
+    </div>--> 
+        <!--<div class="widget-sub-listing">
+            <widgetcontainer *ng-for="#widget of widgetlocal.widgetSubList" [widgettyper]="widget"></widgetcontainer>
+        </div>-->      
+        
+          <!--<div [ng-switch]="widget.type">
+            <p *ng-switch-when="'Chart'"><chartwidgetcontainer [widgetlocal]="widget"></chartwidgetcontainer></p>
+            <p *ng-switch-when="'Colorpicker'"><colorpickerwidgetcontainer [widgetlocal]="widget"></colorpickerwidgetcontainer></p>
+            <p *ng-switch-when="'Group'"><groupwidgetcontainer [widgetlocal]="widget"></groupwidgetcontainer></p>
+            <p *ng-switch-when="'Image'"><imagewidgetcontainer [widgetlocal]="widget"></imagewidgetcontainer></p>
+            <p *ng-switch-when="'List'"><listwidgetcontainer [widgetlocal]="widget"></listwidgetcontainer></p>
+            <p *ng-switch-when="'Selection'"><selectionwidgetcontainer [widgetlocal]="widget"></selectionwidgetcontainer></p>
+            <p *ng-switch-when="'Setpoint'"><setpointwidgetcontainer [widgetlocal]="widget"></setpointwidgetcontainer></p>
+            <p *ng-switch-when="'Slider'"><sliderwidgetcontainer [widgetlocal]="widget"></sliderwidgetcontainer></p>
+            <p *ng-switch-when="'Switch'"><switchwidgetcontainer [widgetlocal]="widget"></switchwidgetcontainer></p>
+            <p *ng-switch-when="'Text'"><textwidgetcontainer [widgetlocal]="widget"></textwidgetcontainer></p>
+            <p *ng-switch-when="'Video'"><videowidgetcontainer [widgetlocal]="widget"></videowidgetcontainer></p>
+            <p *ng-switch-when="'Webview'"><webviewwidgetcontainer [widgetlocal]="widget"></webviewwidgetcontainer></p>
+            <p *ng-switch-default>Error in widget-sub-data</p>
+        </div>-->
+    
+</div>
+
+
+<!--<div *ng-if="widgetlocal.widgetSubList">BLAAA</div>-->
