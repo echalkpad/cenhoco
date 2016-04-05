@@ -3,6 +3,7 @@
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\Deadstyle\AppData\Local\Temp\CenHoCo_refcache</ReferenceCachePath>
     <ShowAllFiles>true</ShowAllFiles>
+    <ToolsVersionPromptShown>1.8</ToolsVersionPromptShown>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Windows-x64'">
     <DebuggerFlavor>WindowsSimulator</DebuggerFlavor>

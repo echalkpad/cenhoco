@@ -19,12 +19,18 @@ var config = {
         scriptsOutput: 'www/scripts',
         vendorOutput: 'www/vendor',
         copyToOutputPathsDev: [
+            ['node_modules/es6-shim/es6-shim.min.js', 'www/vendor/angular2'],
+            ['node_modules/systemjs/dist/system-polyfills.js', 'www/vendor/angular2'],
+            ['node_modules/angular2/es6/dev/src/testing/shims_for_IE.js', 'www/vendor/angular2'],
+            ['node_modules/angular2/bundles/angular2-polyfills.js', 'www/vendor/angular2'],
+            ['node_modules/rxjs/bundles/Rx.js', 'www/vendor/angular2'],
             ['node_modules/jquery/dist/jquery.js', 'www/vendor/4_jquery'],
             ['node_modules/bootstrap/dist/css/bootstrap.css', 'www/vendor/5_bootstrap/css'],
             ['node_modules/bootstrap/dist/js/bootstrap.js', 'www/vendor/5_bootstrap/js'],
             ['node_modules/bootstrap/dist/fonts/*', 'www/vendor/5_bootstrap/fonts'],
             ['node_modules/traceur/bin/traceur-runtime.js', 'www/vendor/1_traceur'],
-            ['node_modules/systemjs/dist/system.js', 'www/vendor/2_systemjs'],            
+            ['node_modules/systemjs/dist/system.src.js', 'www/vendor/angular2'],
+            //['node_modules/systemjs/dist/system.js', 'www/vendor/2_systemjs'],            
             ['node_modules/angular2/bundles/angular2.dev.js', 'www/vendor/3_angular2'],
             ['node_modules/angular2/bundles/router.dev.js', 'www/vendor/3_angular2']
         ]

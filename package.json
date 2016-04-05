@@ -1,7 +1,14 @@
 {
   "name": "CenHoCo",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular2": "2.0.0-beta.13",
+    "systemjs": "0.19.25",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.6"
+  },
   "description": "Frontend for openHAB",
   "main": "appBundle.js",
   "scripts": {
@@ -10,7 +17,6 @@
   "author": "Kluger.net GmbH",
   "license": "Apache v2",
   "devDependencies": {
-    "angular2": "^2.0.0-alpha.45",
     "bootstrap": "^3.3.5",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
@@ -23,8 +29,7 @@
     "gulp-watch": "^4.3.5",
     "jquery": "^2.1.4",
     "stream-series": "^0.1.1",
-    "systemjs": "^0.19.5",
     "traceur": "0.0.92",
-    "tsd": "^0.6.5"
+    "tsd": "^0.6.5"    
   }
 }

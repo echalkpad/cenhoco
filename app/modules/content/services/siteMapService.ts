@@ -47,11 +47,12 @@ export class siteMapService {
 
         console.log('number of sitemaps: ' + data.sitemaps.length);
         siteMapList = [];
-        for (var openHabSiteMap in data.sitemaps) {
+        for (var i = 0; i < data.sitemaps.length; i += 1) {
+        //for (var openHabSiteMap in data.sitemaps) {
             var siteMap = new SiteMap();
-            siteMap.Label = openHabSiteMap.label;
-            siteMap.Name = openHabSiteMap.name;
-            siteMap.Url = openHabSiteMap.link; 
+            siteMap.Label = data.sitemaps[i].label;
+            siteMap.Name = data.sitemaps[i].name;
+            siteMap.Url = data.sitemaps[i].link; 
             siteMapList.push(siteMap);
             //console.log('sitemap pushed onto List with label: ' + siteMap.Label);
         }

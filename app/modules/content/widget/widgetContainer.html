@@ -1,0 +1,106 @@
+﻿<li class="widget-list">
+    <!--<div [ng-switch]="widgettyper.type">
+        <p *ng-switch-when="'Chart'"><chartwidgetcontainer [widgetlocal]="widgettyper"></chartwidgetcontainer></p>
+        <p *ng-switch-when="'Colorpicker'"><colorpickerwidgetcontainer [widgetlocal]="widgettyper"></colorpickerwidgetcontainer></p>
+        <p *ng-switch-when="'Frame'"><framewidgetcontainer [widgetlocal]="widgettyper"></framewidgetcontainer></p>
+        <p *ng-switch-when="'Group'"><groupwidgetcontainer [widgetlocal]="widgettyper"></groupwidgetcontainer></p>
+        <p *ng-switch-when="'Image'"><imagewidgetcontainer [widgetlocal]="widgettyper"></imagewidgetcontainer></p>
+        <p *ng-switch-when="'List'"><listwidgetcontainer [widgetlocal]="widgettyper"></listwidgetcontainer></p>
+        <p *ng-switch-when="'Selection'"><selectionwidgetcontainer [widgetlocal]="widgettyper"></selectionwidgetcontainer></p>
+        <p *ng-switch-when="'Setpoint'"><setpointwidgetcontainer [widgetlocal]="widgettyper"></setpointwidgetcontainer></p>
+        <p *ng-switch-when="'Slider'"><sliderwidgetcontainer [widgetlocal]="widgettyper"></sliderwidgetcontainer></p>
+        <p *ng-switch-when="'Switch'"><switchwidgetcontainer [widgetlocal]="widgettyper"></switchwidgetcontainer></p>
+        <p *ng-switch-when="'Text'"><textwidgetcontainer [widgetlocal]="widgettyper"></textwidgetcontainer></p>
+        <p *ng-switch-when="'Video'"><videowidgetcontainer [widgetlocal]="widgettyper"></videowidgetcontainer></p>
+        <p *ng-switch-when="'Webview'"><webviewwidgetcontainer [widgetlocal]="widgettyper"></webviewwidgetcontainer></p>
+        <p *ng-switch-default>Error in widget-data</p>
+    </div>-->
+
+
+
+    <div *ng-if="widgettyper.type=='Chart'">
+        <p>Chart-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Colorpicker'">
+        <p>Colorpicker-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Frame'">
+        <p>Frame-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Group'">
+        <p>Group-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Image'">
+        <p>Image-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='List'">
+        <p>List-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Selection'">
+        <p>Selection-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Setpoint'">
+        <p>Setpoint-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Slider'">
+        <p>Slider-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Switch'">
+        <p>Switch-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Text'">
+        <p>Text-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Video'">
+        <p>Video-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+
+    <div *ng-if="widgettyper.type=='Webview'">
+        <p>Webview-Widget Code</p>
+        <div class="widget-listing">Type: {{ widgettyper.type }}</div>
+        <div class="widget-listing">Id: {{ widgettyper.widgetId }}</div>
+    </div>
+    
+        <div *ng-if="widgettyper.widgetSubList">
+            <ul>
+                <p>widgetSubList with {{widgettyper.widgetSubList.length}}</p>
+                <widgetcontainer class="widget-sub-listing" *ng-for="#widget of widgettyper.widgetSubList" [widgettyper]="widget"></widgetcontainer>
+            </ul>
+        </div>
+  
+</li>
